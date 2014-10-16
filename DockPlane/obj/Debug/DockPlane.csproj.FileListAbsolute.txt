@@ -1,0 +1,5 @@
+D:\Develop\DockPlane\DockPlane\bin\Debug\DockPlane.dll
+D:\Develop\DockPlane\DockPlane\bin\Debug\DockPlane.pdb
+D:\Develop\DockPlane\DockPlane\obj\Debug\DockPlane.dll
+D:\Develop\DockPlane\DockPlane\obj\Debug\DockPlane.pdb
+D:\Develop\DockPlane\DockPlane\obj\Debug\DockPlane.csprojResolveAssemblyReference.cache

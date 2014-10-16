@@ -1,0 +1,12 @@
+D:\Develop\DockPlane\Sample\bin\Debug\Sample.exe.config
+D:\Develop\DockPlane\Sample\bin\Debug\Sample.exe
+D:\Develop\DockPlane\Sample\bin\Debug\Sample.pdb
+D:\Develop\DockPlane\Sample\bin\Debug\DockPlane.dll
+D:\Develop\DockPlane\Sample\bin\Debug\DockPlane.pdb
+D:\Develop\DockPlane\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
+D:\Develop\DockPlane\Sample\obj\Debug\Sample.Properties.Resources.resources
+D:\Develop\DockPlane\Sample\obj\Debug\Sample.Sample.resources
+D:\Develop\DockPlane\Sample\obj\Debug\Sample.TestForm.resources
+D:\Develop\DockPlane\Sample\obj\Debug\Sample.csproj.GenerateResource.Cache
+D:\Develop\DockPlane\Sample\obj\Debug\Sample.exe
+D:\Develop\DockPlane\Sample\obj\Debug\Sample.pdb
