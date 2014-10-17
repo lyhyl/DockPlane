@@ -36,30 +36,47 @@ namespace DockPlane.WKTheme.Metro
                 Height = FormSize.Height + MetroThemeCfg.Thickness * 2;
             }
         }
+        public override bool Active
+        {
+            get { return base.Active; }
+            internal set
+            {
+                base.Active = value;
+                Invalidate();
+            }
+        }
 
         public MetroBorder(Color color)
         {
             Color = color;
             FormOffset = new Point(MetroThemeCfg.Thickness, MetroThemeCfg.Thickness);
+            Orientation = BorderOrientation.Top;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            e.Graphics.FillRectangle(new SolidBrush(Color), 0, 0, Width, Height);
-            switch (Orientation)
+            e.Graphics.FillRectangle(new SolidBrush(Color.LightGray), 0, 0, Width, Height);
+
+            if (Active)
             {
-                case BorderOrientation.Left:
-                    e.Graphics.FillRectangle(new SolidBrush(Color.LightGray), 0, MetroThemeCfg.Thickness,
-                        Width, Height - MetroThemeCfg.Thickness);
-                    break;
-                case BorderOrientation.Right:
-                    break;
-                case BorderOrientation.Top:
-                    break;
-                case BorderOrientation.Bottom:
-                    break;
+                int x = 0, y = 0;
+                int w = 0, h = 0;
+                switch (Orientation)
+                {
+                    case BorderOrientation.Right:
+                    case BorderOrientation.Left:
+                        break;
+                    case BorderOrientation.Bottom:
+                        y = Height - MetroThemeCfg.Thickness;
+                        goto case BorderOrientation.Top;
+                    case BorderOrientation.Top:
+                        w = Width;
+                        h = MetroThemeCfg.Thickness;
+                        break;
+                }
+                e.Graphics.FillRectangle(new SolidBrush(Color), x, y, w, h);
             }
         }
     }

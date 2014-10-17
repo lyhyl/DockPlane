@@ -10,5 +10,21 @@ namespace DockPlane
     internal class PlaneCombination : Dockable
     {
         private List<Plane> planes = new List<Plane>();
+
+        public override void DockTo(DockState ds)
+        {
+        }
+
+        public override bool IsActive
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            internal set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

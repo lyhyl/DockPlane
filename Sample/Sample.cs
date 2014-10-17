@@ -12,13 +12,15 @@ namespace Sample
 {
     public partial class Sample : Form
     {
-        TestForm testForm = new TestForm();
+        TestForm testForm0 = new TestForm();
+        TestForm testForm1 = new TestForm();
 
         public Sample()
         {
             InitializeComponent();
 
-            dockPlane.AddForm(testForm);
+            dockPlane.AddForm(testForm0);
+            dockPlane.AddForm(testForm1);
         }
     }
 }

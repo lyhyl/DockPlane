@@ -6,41 +6,29 @@ using System.Windows.Forms;
 
 namespace DockPlane
 {
-    internal class Plane : Dockable
+    public class Plane : Dockable
     {
-        public bool IsCombined
-        {
-            internal set;
-            get;
-        }
-
-        private DockState _state = DockState.Floating;
-        public DockState State
-        {
-            private set { _state = value; }
-            get { return _state; }
-        }
+        #region controls
 
         private DockForm _dockForm;
-        private TitleBar _titleBar;
-        private Border _border;
-
         public DockForm DockForm { set { _dockForm = value; } get { return _dockForm; } }
+        private TitleBar _titleBar;
         public TitleBar TitleBar { set { _titleBar = value; } get { return _titleBar; } }
+        private Border _border;
         public Border Border { set { _border = value; } get { return _border; } }
 
-        private bool _active = false;
-        public bool Active
+        #endregion
+
+        private bool _isActive = false;
+        public override bool IsActive
         {
             internal set
             {
-                if (_active == value)
+                if (_isActive == value)
                     return;
-                _active = value;
-                if (!_active)
-                    TitleBar.Active = Border.Active = false;
+                _isActive = TitleBar.Active = Border.Active = value;
             }
-            get { return _active; }
+            get { return _isActive; }
         }
 
         internal Plane(DockForm form)
@@ -54,14 +42,6 @@ namespace DockPlane
             SetupUI();
             FitSize();
             RegisterEvents();
-        }
-
-        private void RegisterEvents()
-        {
-            TitleBar.MouseDown += TitleBar_MouseDown;
-            TitleBar.MouseUp += TitleBar_MouseUp;
-            TitleBar.MouseHover += TitleBar_MouseHover;
-            TitleBar.MouseLeave += TitleBar_MouseLeave;
         }
 
         private void SetupUI()
@@ -93,16 +73,29 @@ namespace DockPlane
             Height = Border.Height + TitleBar.Height;
         }
 
+        private void RegisterEvents()
+        {
+            TitleBar.MouseDown += TitleBar_MouseDown;
+            TitleBar.MouseUp += TitleBar_MouseUp;
+            TitleBar.MouseHover += TitleBar_MouseHover;
+            TitleBar.MouseLeave += TitleBar_MouseLeave;
+        }
+
         void TitleBar_MouseDown(object sender, MouseEventArgs e)
         {
-            Active = true;
-            TitleBar.Active = true;
+            if (!IsActive)
+            {
+                IsActive = true;
+                OnActive();
+            }
             BeginDrag(TitleBar, e.Location);
+            OnDragging();
         }
 
         void TitleBar_MouseUp(object sender, MouseEventArgs e)
         {
             EndDrag();
+            OnDragged();
         }
 
         void TitleBar_MouseLeave(object sender, EventArgs e)
@@ -113,6 +106,11 @@ namespace DockPlane
         void TitleBar_MouseHover(object sender, EventArgs e)
         {
             TitleBar.Hover = true;
+        }
+
+        public override void DockTo(DockState ds)
+        {
+            State = ds;
         }
     }
 }

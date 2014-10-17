@@ -15,6 +15,8 @@ namespace DockPlane
         internal Font DesignFont;
         internal Size DesignSize;
 
+        internal Plane Plane { set; get; }
+
         internal void BeginEmbed()
         {
             //save
